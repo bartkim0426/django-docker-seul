@@ -31,8 +31,8 @@ if [ "$PRODUCTION" == "true" ]; then
     # This will upload the files to s3 because of django-storages-redux
     # and the setting:
     # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-#     echo "==> Django setup, executing: collectstatic"
-#     python3 /srv/${DJANGO_PROJECT_NAME}/manage.py collectstatic --noinput -v 3
+    echo "==> Django setup, executing: collectstatic"
+    python3 /srv/${DJANGO_PROJECT_NAME}/manage.py collectstatic --noinput -v 3
 else
     # Django: reset database
     # https://docs.djangoproject.com/en/1.9/ref/django-admin/#flush
@@ -51,8 +51,8 @@ else
     python3 /srv/${DJANGO_PROJECT_NAME}/manage.py migrate --fake-initial
 
     # Django: collectstatic
-    # echo "==> Django setup, executing: collectstatic"
-    # python3 /srv/${DJANGO_PROJECT_NAME}/manage.py collectstatic --noinput -v 3
+    echo "==> Django setup, executing: collectstatic"
+    python3 /srv/${DJANGO_PROJECT_NAME}/manage.py collectstatic --noinput -v 3
 fi
 
 

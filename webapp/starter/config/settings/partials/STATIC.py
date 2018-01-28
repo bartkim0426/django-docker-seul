@@ -5,6 +5,7 @@ from .BASE import ROOT_DIR, CONFIG_DIR
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(ROOT_DIR, 'staticfiles')
 STATIC_ROOT = str(ROOT_DIR('staticfiles'))
-STATIC_DIRS = (
-    CONFIG_DIR.path('static'),
+# STATIC_ROOT = '/srv/static-files'
+STATICFILES_DIRS = (
+    str(ROOT_DIR.path('static')),
 )

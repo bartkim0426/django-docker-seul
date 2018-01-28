@@ -8,42 +8,34 @@ version: "3"
 
 volumes:
     psql-data: {}
-    static-files:
+    staticfiles:
     media-files:
     
     
 services:
     db:
-        image: postgres:9.6.1
+        image: postgres:9.6
         volumes:
+            # - /opt/starter/psql:/var/lib/postgresql/data/pgdata
             - ./psql-data:/var/lib/postgresql/data
-        environment:
-            - POSTGRES_DB=postgres
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=mysecretpassword
-            - POSTGRES_INITDB_ARGS=--encoding=UTF-8
         env_file:
-            - ./config/environment/development_local.env
-        healthcheck:
-          test: "pg_isready -h localhost -p 5432 -U postgres"
-          interval: 3s
-          timeout: 1s
-          retries: 10
+            - ./config/environment/development_dev.env
 
     webapp:
         build:
             context: webapp
         volumes:
             # - ./webapp/starter/staticfiles:/srv/static-files
+            # - static-files:/srv/static-files
+            - ./webapp/starter/staticfiles:/srv/starter/staticfiles
             - media-files:/srv/media-files
-            - static-files:/srv/static-files
             - ./webapp/starter:/srv/starter
         expose:
             - "8000"
         depends_on:
             - db
         env_file:
-            - ./config/environment/development_local.env
+            - ./config/environment/development_dev.env
 
     webserver:
         build:
@@ -55,7 +47,7 @@ services:
         depends_on:
             - webapp
         volumes:
+            - ./webapp/starter/staticfiles:/srv/starter/staticfiles
             - media-files:/srv/media-files
-            - static-files:/srv/static-files
         env_file:
-            - ./config/environment/development_local.env
+            - ./config/environment/development_dev.env

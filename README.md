@@ -3,30 +3,47 @@ Docker Django
 
 [![Circle CI](https://circleci.com/gh/erroneousboat/docker-django/tree/master.svg?style=shield)](https://circleci.com/gh/erroneousboat/docker-django/tree/master)
 
-## tl;dr
+## Usage
 ```bash
-$ git clone git@github.com:erroneousboat/docker-django.git
+$ git clone https://github.com/bartkim0426/django-docker-seul.git
+# when delpoy
 $ docker-compose up
+# when development
+$ docker-compose -f docker-compose-dev.yml up
 ```
 
 Now you can access the application at <https://localhost> and the admin site
 at <https://localhost/admin>.
 
-A project to get you started with Docker and Django. This is made to
-serve as an example for you to hack on. I don't claim that this is the
-correct way to setup a system with Django and Docker, and if you have any
-suggestions, please fork the project, send a pull-request or create an issue.
-See the issues for the things I'm working on now.
+## Settings
+### Have to change `development.env` and `development_local.env`
+- `NGINX_SERVER_NAME` : add server name
+### `uwsgi` settings
+- in `webapp/config/django-uwsgi.ini`
+### `Nginx` settings: HAVE TO set up before build image
+- In `services/webserver/config/nginx.tmpl`
 
-Stack and version numbers used:
+## Processes (deploying)
+### -1. Build and run `db`
+- Using `postgres:9.6` image
+- Create volumes at `psql-data` in project dir. (Using `development.env`)
+### -2. Build and run `webapp`
+- using `webapp/Dockerfile` to build. 
+- Add `webapp/config/requirements.txt`, `webapp/config/start.sh/`, `webapp/starter` to projectand `pip install`
+- Run `adduser` and `chown` commands
+- Run `webapp/config/start.sh`: migrate => collectstatic => starting uWSGI
+### -3. Build and run `webserver`
+- Using `services/webserver/Dockerfile` to build
+- Add `start.sh`, `nginx.tmpl`
+- Run `start.sh` => Starting Nginx
 
-| Name           | Version |
-|----------------|---------|
-| Docker         | 1.13.0  |
-| Docker Compose | 1.8.0   |
-| Nginx          | 1.11    |
-| Postgresql     | 9.6     |
-| uWSGI          | 2.0.15  |
+
+
+## Following To-do list
+[ ] `chmod 755` to `media` directory in `webapp`, `webserver`
+[ ] `postgres` database volumes checking
+[ ] Not deploy at once
+
 
 ## Folder structure
 
