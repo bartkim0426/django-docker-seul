@@ -1,0 +1,22 @@
+django==1.11
+
+# for images
+Pillow
+
+# Python-postgresql db adapter
+psycopg2
+
+# django-admin library
+# django-suit==0.2.25
+
+# django suit v2
+# -e git://github.com/darklow/django-suit.git@v2#egg=django-suit
+
+# for easy file upload
+# django-filer
+
+# easy_thumbnail version with no error
+# easy-thumbnails==2.4.1
+
+# managing environ and setting base, project dir
+django-environ

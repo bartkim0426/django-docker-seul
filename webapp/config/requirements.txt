@@ -1,0 +1,12 @@
+# setting django version
+# django =< 1.11
+django==1.11
+
+# for images
+Pillow
+
+# Python-postgresql db adapter
+psycopg2
+
+# Managing Environ var
+django-environ

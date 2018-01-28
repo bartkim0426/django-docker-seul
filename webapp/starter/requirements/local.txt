@@ -1,0 +1,10 @@
+-r production.txt
+
+# for effective debug and usage
+django-debug-toolbar==1.8
+django-extensions==1.7.9
+
+# for python lint check
+flake8
+
+ipython
