@@ -7,17 +7,17 @@
 version: "3"
 
 volumes:
-    psql-data: {}
+    psqldata: {}
     staticfiles:
     media-files:
     
     
 services:
-    db:
-        image: postgres:9.6
+    real-db:
+        image: postgres:10.1
         volumes:
             # - /opt/starter/psql:/var/lib/postgresql/data/pgdata
-            - ./psql-data:/var/lib/postgresql/data
+            - ./psqldata:/var/lib/postgresql/data/pgdata
         env_file:
             - ./config/environment/development.env
 
@@ -33,9 +33,10 @@ services:
         expose:
             - "8000"
         depends_on:
-            - db
+            - jobboard-db
         env_file:
             - ./config/environment/development.env
+        restart: always
 
     webserver:
         build:
@@ -51,3 +52,4 @@ services:
             - media-files:/srv/media-files
         env_file:
             - ./config/environment/development.env
+        restart: always

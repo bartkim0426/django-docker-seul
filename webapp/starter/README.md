@@ -1,5 +1,10 @@
 ## Project base
 
+
+### Todos
+- requirements: `starter` 내에 있는 requirements 쓰려면 build 전에 Dockerfile 변경 필요 (현재는 `webapp/config/requirements.txt`)
+- uwsgi 설치는 언제되는지?
+
 프로젝트 생성을 쉽게 해주기 위한 directory
 
 사용시 git clone 후`projectname`만 해당 프로젝트명으로 변경해서 사용
@@ -36,3 +41,5 @@ DJANGO_ALLOWED_HOSTS=['*']
 
 
 - database settings: 현재는 local db가 sqlite. 맞는 psql 세팅으로 변경한 후 진행 가능
+
+
