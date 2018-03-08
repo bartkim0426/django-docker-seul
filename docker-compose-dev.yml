@@ -11,7 +11,6 @@ volumes:
     staticfiles:
     media-files:
     
-    
 services:
     db-dev:
         image: postgres:9.6
@@ -49,7 +48,7 @@ services:
             context: .
             dockerfile: services/webserver/Dockerfile-dev
         ports:
-            - "80:80"
+            - "${NGINX_PORT}:${NGINX_PORT}"
             - "443:443"
         depends_on:
             - webapp-dev

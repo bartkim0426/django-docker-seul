@@ -21,7 +21,7 @@ http {
 
     server {
         # rewrite all HTTP to HTTPS
-        listen 80;
+        listen ${NGINX_PORT};
         server_name ${NGINX_SERVER_NAME};
         client_max_body_size 200m;
 
