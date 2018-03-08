@@ -1,8 +1,4 @@
 ADMIN_APPS = [
-    # for admin
-    'filer',
-    'suit',
-    'easy_thumbnails',
 ]
 DJANGO_APPS = [
     'django.contrib.admin',
