@@ -37,12 +37,18 @@ at <https://localhost/admin>.
 - Add `start.sh`, `nginx.tmpl`
 - Run `start.sh` => Starting Nginx
 
+## Using multiple project
+- Can change port in `development_local.env`: `NGINX_PORT`, and `NGINX_SERVER_NAME`
+- Ex) `NGINX_PORT=8000`, `NGINX_SERVER_NAME=localhost:8000`
+- Then you can access `localhost:8000` with existing `localhost` docker-compose
+
 
 
 ## Following To-do list
-[ ] `chmod 755` to `media` directory in `webapp`, `webserver`
-[ ] `postgres` database volumes checking
-[ ] Not deploy at once
+[X] `chmod 755` to `media` directory in `webapp`, `webserver`
+[X] `postgres` database volumes checking
+[X] Not deploy at once
+[X] Changing dev environment nginx port 
 
 
 ## Folder structure
